@@ -1,4 +1,13 @@
 #!/usr/bin/python3
+"""
+This module defines a function 'count_words' that queries the Reddit API and parses
+the titles of hot posts, counting the occurrences of specified keywords (case-insensitive).
+The results are printed in descending order by count, and alphabetically for tied counts.
+
+The function handles pagination and recursively collects post titles. It then counts
+keyword occurrences and prints the sorted results. If the subreddit is invalid or no results
+are found, nothing is printed.
+"""
 import requests
 import re
 

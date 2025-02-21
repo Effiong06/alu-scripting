@@ -1,4 +1,12 @@
 #!/usr/bin/python3
+"""
+This module defines a recursive function 'recurse' that queries the Reddit API
+and returns a list containing the titles of all hot articles for a given subreddit.
+If no results are found for the subreddit, the function returns None.
+
+The function handles pagination by recursively querying Reddit's API and adding the
+titles of hot posts to a list until all pages have been processed.
+"""
 import requests
 
 def recurse(subreddit, hot_list=[], after=None):

@@ -1,4 +1,12 @@
 #!/usr/bin/python3
+"""
+This module defines a function 'top_ten' that queries the Reddit API to print the titles
+of the first 10 hot posts for a given subreddit. If the subreddit is invalid, the function
+prints None.
+
+The function requests the top 10 hot posts from Reddit's API and prints the titles of the posts.
+If no valid subreddit is found, it handles errors by printing None.
+"""
 import requests
 
 def top_ten(subreddit):
