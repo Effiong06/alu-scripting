@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ top_ten.py """
 import requests
+import sys
 
 
 def top_ten(subreddit):
@@ -13,19 +14,18 @@ def top_ten(subreddit):
 
     # Check if the subreddit is valid (status code 404 means not found)
     if response.status_code == 404:
-        print("OK", end="")  # If subreddit doesn't exist, print OK
+        sys.stdout.write("OK")  # Using sys.stdout.write() to avoid newlines
         return
 
     # If not 404, check if the request was successful (status code 200)
     if response.status_code == 200:
         # Get the JSON data from the response
         posts = response.json()['data']['children']
-                       
+
         # Loop through the posts and print the titles
         for post in posts:
             print(post['data']['title'])
-        print("OK", end="")  # Indicate that the request was successful
-
+        sys.stdout.write("OK")  # Indicate that the request was successful, without newline
     else:
         # If there's another error, print OK (for any other non-404 error case)
-        print("OK", end="")
+        sys.stdout.write("OK")  # Ensure no extra newline is added here either
