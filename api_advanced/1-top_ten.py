@@ -1,14 +1,11 @@
 #!/usr/bin/python3
-"""
-A script that queries the Reddit API to fetch the top 10 hot posts from a given subreddit.
-If the subreddit does not exist, it prints OK.
-"""
-
+""" top_ten.py """
 import requests
 
 
 def top_ten(subreddit):
-    url = f'https://www.reddit.com/r/{subreddit}/hot.json?limit=10'
+    """ prints the titles of the first 10 hot posts listed in a subreddit """
+    url = 'https://www.reddit.com/r/{subreddit}/hot.json?limit=10'
     headers = {'User-Agent': 'python:top_ten:v1.0 (by /u/yourusername)'}
                 
     # Send the GET request to Reddit API
