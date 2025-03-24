@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+""" top_ten.py """
 import requests
 
 def top_ten(subreddit):
