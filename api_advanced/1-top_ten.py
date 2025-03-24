@@ -10,30 +10,20 @@ def top_ten(subreddit):
     If the subreddit is invalid, it prints None.
     If the request is successful, it prints the titles and "OK".
     """
-    
+
     url = f"https://www.reddit.com/r/{subreddit}/hot.json?limit=10"
     headers = {"User-Agent": "Mozilla/5.0"}
+    response = requests.get(url, headers=headers, allow_redirects=False)
+
+    if response.status_code != 200:
+        print(None)
+        return
 
     try:
-        response = requests.get(url, headers=headers, allow_redirects=False)
-        response.raise_for_status() 
-
-        data = response.json()
-        posts = data["data"]["children"]
-
-        if not posts:
-            print(None)
-            return
-
+        posts = response.json()['data']['children']
         for post in posts:
-            print(post["data"]["title"])
-        print("OK") .
+            print(post['data']['title'])
+        print("OK") #Added this line to print "OK" on success.
 
-    except requests.exceptions.HTTPError as e:
-        if e.response.status_code == 404:
-            print(None)
-        else:
-            print(None)
-
-    except (requests.exceptions.RequestException, KeyError, ValueError):
+    except (KeyError, ValueError, requests.exceptions.RequestException):
         print(None)
