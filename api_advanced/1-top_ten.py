@@ -3,17 +3,13 @@
 import requests
 
 def top_ten(subreddit):
-    """
-    A function that fetches and prints the titles of the top ten hot posts
-    from a subreddit, or prints 'OK' if successful, or 'None' if failed.
-    """
-
+    """ prints the titles of the first 10 hot posts listed in a subreddit """
     url = f"https://www.reddit.com/r/{subreddit}/hot.json?limit=10"
     headers = {"User-Agent": "Mozilla/5.0"}
 
     try:
         response = requests.get(url, headers=headers, allow_redirects=False)
-        response.raise_for_status() # Raise HTTPError for bad responses (4xx or 5xx)
+        response.raise_for_status() 
 
         data = response.json()
         posts = data["data"]["children"]
@@ -24,7 +20,7 @@ def top_ten(subreddit):
 
         for post in posts:
             print(post["data"]["title"])
-        print("OK") # prints OK if it succeeds.
+        print("OK") .
 
     except requests.exceptions.HTTPError as e:
         if e.response.status_code == 404:
