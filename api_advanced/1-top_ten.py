@@ -15,7 +15,7 @@ def top_ten(subreddit):
         posts = response.json()['data']['children']
         for post in posts:
             print(post['data']['title'])
-        print("OK") #Added this line to print "OK" on success.
+        print("OK")
 
     except (KeyError, ValueError, requests.exceptions.RequestException):
         print(None)
